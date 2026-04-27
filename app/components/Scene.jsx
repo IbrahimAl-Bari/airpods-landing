@@ -9,16 +9,18 @@ import {OrbitControls} from "@react-three/drei";
 import StudioLights from "@/app/components/StudioLights";
 
 const Scene = () => {
-    return (
-        <section className={"product-viewer"}>
 
-            <div className={"w-screen h-screen"}>
-        <Canvas camera={{ position: [0, 0, 5] }}>
+
+    return (
+        <section>
+
+            <div className={"w-screen h-screen absolute mt-5"}>
+        <Canvas camera={{ position: [0, -0.5, 5] }}>
             <Case />
             <LeftAirpod />
             <RightAirpod />
 
-            <OrbitControls />
+            {/*<OrbitControls />*/}
             <StudioLights />
         </Canvas>
             </div>
