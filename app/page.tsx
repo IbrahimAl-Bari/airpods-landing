@@ -1,13 +1,13 @@
 import NavBar from './components/NavBar'
+import Scene from "@/app/components/Scene";
 
 const Page = () => {
     return (
-        <div>
         <main>
             <NavBar />
+            <Scene />
 
         </main>
-        </div>
     )
 }
 export default Page
