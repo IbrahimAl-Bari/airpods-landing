@@ -15,7 +15,7 @@ const Scene = () => {
         <section>
 
             <div className={"w-screen h-screen absolute mt-5"}>
-        <Canvas camera={{ position: [0, -0.5, 5] }}>
+                <Canvas dpr={[1, 1.5]} gl={{ antialias: false, powerPreference: 'high-performance' }}>
             <Case />
             <LeftAirpod />
             <RightAirpod />
