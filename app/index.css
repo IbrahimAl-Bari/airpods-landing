@@ -78,7 +78,7 @@ body {
 
 
 @utility h3-semibold {
-    @apply font-semibold text-xl text-dark-100;
+    @apply font-semibold text-xl text-white;
 }
 
 @utility base-semibold {
@@ -96,7 +96,7 @@ body {
 
 
     header {
-        @apply w-screen fixed top-0 left-0 z-40 flex-center bg-black min-h-[7vh];
+        @apply w-screen sticky top-0 left-0 z-40 flex-center bg-black min-h-[7vh];
 
         nav {
             @apply container mx-auto flex-between px-5 2xl:px-0;
@@ -106,7 +106,7 @@ body {
                 @apply flex-center gap-8;
 
                 a {
-                    @apply hidden md:block text-white opacity-80 font-regular text-sm cursor-pointer hover:opacity-100 transition-all duration-300 ease-in-out;
+                    @apply hidden md:block text-white font-medium text-sm cursor-pointer hover:opacity-100 transition-all duration-300 ease-in-out;
                 }
             }
 

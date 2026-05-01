@@ -1,17 +1,22 @@
-import React, { useRef, useEffect } from 'react'
+// Left-airpod.jsx
+import React, { useEffect, useRef, forwardRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import gsap from 'gsap'
+import {useFrame} from "@react-three/fiber";
+import {scrollStore} from "@/app/lib/scrollStore";
 
-export function LeftAirpod(props) {
-  const ref = useRef()
+export const LeftAirpod = forwardRef((props, ref) => {
+
+  const localRef = useRef()
+  const activeRef = ref || localRef
   const { nodes, materials } = useGLTF('/models/left-airpod.glb')
 
   useEffect(() => {
-    if (!ref.current) return
+    if (!activeRef.current) return
 
-    ref.current.position.y = -0.5  // start below
+    activeRef.current.position.y = -0.5
 
-    gsap.to(ref.current.position, {
+    gsap.to(activeRef.current.position, {
       y: 0,
       duration: 1.2,
       ease: 'power3.out',
@@ -19,8 +24,13 @@ export function LeftAirpod(props) {
     })
   }, [])
 
+  useFrame(() => {
+    if (!activeRef.current) return
+    activeRef.current.rotation.y = Math.PI / 2 * scrollStore.progress
+  })
+
   return (
-      <group ref={ref} {...props} dispose={null}>
+      <group ref={activeRef} {...props} dispose={null}>
         <group position={[-1, 1.2, 0.7]} rotation={[1.286, -0.571, -1.874]} scale={0.5}>
           <mesh geometry={nodes.Object_71.geometry} material={materials.FesGvQOXeqPgsWH} />
           <mesh geometry={nodes.Object_75.geometry} material={materials.vdKonUzpqPTDVLw} />
@@ -37,6 +47,6 @@ export function LeftAirpod(props) {
         </group>
       </group>
   )
-}
+})
 
 useGLTF.preload('/models/left-airpod.glb')
