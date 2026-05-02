@@ -78,7 +78,7 @@ body {
 
 
 @utility h3-semibold {
-    @apply font-semibold text-xl text-white;
+    @apply font-semibold text-xl max-sm:text-sm whitespace-nowrap text-white;
 }
 
 @utility base-semibold {

@@ -6,10 +6,12 @@ Command: npx gltfjsx@6.5.3 public/models/case.glb -o app/components/Case.jsx -r 
 import React, {useEffect, useRef} from 'react'
 import { useGLTF } from '@react-three/drei'
 import gsap from "gsap";
+import {useMediaQuery} from "react-responsive";
 
 export function Case(props) {
   const { nodes, materials } = useGLTF('/models/case.glb')
   const ref = useRef()
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
     if (!ref.current) return
@@ -24,9 +26,11 @@ export function Case(props) {
     })
   }, [])
 
+  const v = isMobile ? 0.6 : 1
+
   return (
     <group ref={ref} {...props} dispose={null}>
-      <group rotation={[Math.PI / 2, 0, 0]} scale={50}>
+      <group rotation={[Math.PI / 2, 0, 0]} scale={50 * v}>
         <group scale={0.01}>
           <mesh geometry={nodes.Object_12.geometry} material={materials.VWRclvsoDtTiCpL} position={[0, -1.307, -1.063]} rotation={[-2.007, 0, 0]} />
           <mesh geometry={nodes.Object_14.geometry} material={materials.VWRclvsoDtTiCpL_0} position={[0, -1.307, -1.063]} rotation={[-2.007, 0, 0]} />

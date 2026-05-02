@@ -4,12 +4,14 @@ import { useGLTF } from '@react-three/drei'
 import gsap from "gsap"
 import {useFrame} from "@react-three/fiber";
 import {scrollStore} from "@/app/lib/scrollStore";
+import {useMediaQuery} from "react-responsive";
 
 export const RightAirpod = forwardRef((props, ref) => {
 
   const localRef = useRef()
   const activeRef = ref || localRef
   const { nodes, materials } = useGLTF('/models/right-airpod.glb')
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
     if (!activeRef.current) return
@@ -34,9 +36,11 @@ export const RightAirpod = forwardRef((props, ref) => {
         -Math.PI / 2 * scroll + extra
   })
 
+  const v = isMobile ? 0.5 : 1
+
   return (
       <group ref={activeRef} {...props} dispose={null}>
-        <group position={[1, 1.2, 0.7]} rotation={[1.254, 0.542, 1.864]} scale={0.5}>
+        <group position={[1 * v, 1.2, 0.7]} rotation={[1.254, 0.542, 1.864]} scale={0.5 * v}>
           <mesh geometry={nodes.Object_112.geometry} material={materials.uxJORKAoxKXCbDN} />
           <mesh geometry={nodes.Object_114.geometry} material={materials.vdKonUzpqPTDVLw} />
           <mesh geometry={nodes.Object_117.geometry} material={materials.FesGvQOXeqPgsWH} />
