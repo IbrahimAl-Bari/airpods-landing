@@ -26,15 +26,6 @@ export const RightAirpod = forwardRef((props, ref) => {
     })
   }, [])
 
-  useFrame(() => {
-    if (!activeRef.current) return
-
-    const scroll = scrollStore.progress ?? 0
-    const extra = props.rotation?.[1] ?? 0
-
-    activeRef.current.rotation.y =
-        -Math.PI / 2 * scroll + extra
-  })
 
   const v = isMobile ? 0.5 : 1
 

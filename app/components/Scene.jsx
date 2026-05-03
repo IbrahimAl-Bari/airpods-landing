@@ -11,6 +11,7 @@ import { useGSAP } from "@gsap/react"
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
+
 const Scene = () => {
 
     return (

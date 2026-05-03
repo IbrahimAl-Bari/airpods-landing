@@ -82,18 +82,23 @@ body {
 }
 
 @utility base-semibold {
-    @apply font-semibold text-base text-dark-100;
+    @apply font-semibold text-dark-100;
 }
 
 @utility small-medium {
-    @apply font-medium text-xs;
+    @apply font-medium text-xl text-white
 }
 
 @layer components {
     h1 {
         @apply font-semibold lg:text-3xl 2xl:text-5xl text-white;
     }
-
+    h2 {
+        @apply font-semibold text-xl max-sm:text-sm whitespace-nowrap text-white;
+    }
+    h3 {
+        @apply font-medium text-xs;
+    }
 
     header {
         @apply w-screen sticky top-0 left-0 z-40 flex-center bg-black min-h-[7vh];

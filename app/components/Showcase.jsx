@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
-import {Canvas} from "@react-three/fiber";
+import {Canvas, useFrame} from "@react-three/fiber";
 import {LeftAirpod} from "@/app/components/Left-airpod";
 import {RightAirpod} from "@/app/components/Right-airpod";
 import StudioLights from "@/app/components/StudioLights";
@@ -13,6 +13,29 @@ import {scrollStore} from "@/app/lib/scrollStore";
 import { useMediaQuery } from 'react-responsive';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
+
+
+function RotatingPods() {
+    const ref = useRef()
+    const Rightairpodref = useRef(null)
+    const Leftairpodref = useRef(null)
+
+    useFrame(() => {
+        if (!Rightairpodref.current) return
+
+        const scroll = scrollStore.progress ?? 0
+        const extra = Rightairpodref.current.rotation?.[1] ?? 0
+
+        Rightairpodref.current.rotation.y =
+            -Math.PI / 2 * scroll + extra
+    })
+
+    return (
+        <group ref={ref}>
+            <LeftAirpod ref={Leftairpodref} position={[0.7,0,0]} rotation={[-0.5, 0.2, 0.5]}/>
+            <RightAirpod ref={Rightairpodref} position={[-0.7,0,0]} rotation={[0, -0.2, -0.5]}/>
+        </group>
+    )}
 
 const Showcase = () => {
     const showcaseRef = useRef(null)
@@ -25,11 +48,10 @@ const Showcase = () => {
 
 
     const airpodsref = useRef(null)
-    const Rightairpodref = useRef(null)
-    const Leftairpodref = useRef(null)
 
 
     const isMobile = useMediaQuery({ maxWidth: 768 });
+
 
     useGSAP(() => {
         const tl = gsap.timeline({
@@ -60,9 +82,7 @@ const Showcase = () => {
 
                 <div ref={airpodsref} className={"w-screen h-screen absolute z-10"}>
                     <Canvas camera={{ position: [0, 1, 3.5], fov: 75 }} dpr={[1, 1.5]} gl={{ antialias: false, powerPreference: 'high-performance' }}>
-                        <LeftAirpod ref={Leftairpodref} position={[0.7,0,0]} rotation={[-0.5, 0.2, 0.5]}/>
-                        <RightAirpod ref={Rightairpodref} position={[-0.7,0,0]} rotation={[0, -0.2, -0.5]}/>
-
+                       <RotatingPods />
                         <StudioLights />
                     </Canvas>
                 </div>
