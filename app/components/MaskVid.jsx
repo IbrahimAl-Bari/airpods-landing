@@ -13,7 +13,7 @@ const MaskVid = () => {
                 scrollTrigger: {
                     trigger: '#showcase',
                     start: 'top top',
-                    end: 'bottom top',
+                    end: '+=1000',
                     scrub: true,
                     pin: true,
                 }
@@ -30,6 +30,7 @@ const MaskVid = () => {
         <section id="showcase">
             <div className="media">
                 <video src="/video/videoplayback.webm" loop muted autoPlay playsInline />
+
                 <div className="mask">
                     <img src="/h2.svg" />
                 </div>

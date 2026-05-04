@@ -6,7 +6,7 @@ import {RightAirpod} from "./Right-airpod";
 
 const controlsConfig = {
     snap: true,
-    speed: 1,
+    speed: 0.5,
     zoom: 1,
     azimuth: [-Infinity, Infinity],
     config: {mass:1, tension: 0, friction: 26}

@@ -12,9 +12,9 @@ const Page = () => {
         <Suspense fallback={<Loading />}>
         <main>
             <NavBar />
-            <Scene />
+            {/*<Scene />*/}
             <Hero  />
-            <Showcase />
+            {/*<Showcase />*/}
             <Look />
             <MaskVid />
         </main>

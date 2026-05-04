@@ -10,7 +10,7 @@ const Hero = () => {
 
                 <button className={"button mt-90 z-50"}>Buy</button>
 
-                <p>From $249 or $20/mo for 12 months</p>
+                <p className={'base-semibold'}>From $249 or $20/mo for 12 months</p>
 
             </div>
 

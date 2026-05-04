@@ -58,18 +58,16 @@ const Look = () => {
                             <button
                                 key={f.id}
                                 onClick={() => handleClick(f, i)}
-                                className={`group text-left transition-all duration-300 border-l-2 pl-4 ${
-                                    activeIndex === i
-                                        ? 'border-white'
-                                        : 'border-transparent'}`}>
+                                className={`group text-left transition-all duration-300 pl-4 max-md:pl-0`}>
 
-                                <span className={"relative small-medium"}>
+                            <div className={`w-[60%] max-md:w-full flex items-center transition-all duration-300 h-full gap-2 p-1 pl-1 rounded-full`}>
+                                {isMobile ? null : activeIndex === i ? <img className={"plus"} src="/circle-minus.svg" alt="minus"/> : <img className={"plus"} src="/circle-plus.svg" alt="plus"/>}
+
+                                <span className={"relative small-medium max-md:text-md"}>
                                      {f.label}
-
-                                    <span className={`absolute -bottom-0.5 left-0 h-px bg-white opacity-80 transition-all duration-300 ${
-                                        activeIndex === i ? 'w-full' : 'w-0 group-hover:w-full'
-                                    }`}/>
                                     </span>
+
+                                </div>
                             </button>
                         ))}
 
