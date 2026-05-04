@@ -5,6 +5,7 @@ import {Suspense} from "react";
 import Loading from "@/app/loading";
 import Showcase from "@/app/components/Showcase";
 import Look from "@/app/components/Look";
+import MaskVid from "@/app/components/MaskVid";
 
 const Page = () => {
     return (
@@ -15,6 +16,7 @@ const Page = () => {
             <Hero  />
             <Showcase />
             <Look />
+            <MaskVid />
         </main>
 </Suspense>
     )
