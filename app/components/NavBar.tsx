@@ -3,8 +3,8 @@ import Image from 'next/image'
 
 const NavBar = () => {
     return (
-        <header>
-            <nav>
+        <header className={"z-50"}>
+            <nav className={"z-50"}>
                 <Image src="/logo.svg" alt={"Logo"} width={24} height={24}/>
 
                 <ul>
