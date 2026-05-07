@@ -4,10 +4,12 @@ import {Canvas} from "@react-three/fiber";
 import {Case} from "./Case";
 import {LeftAirpod} from "./Left-airpod";
 import {RightAirpod} from "./Right-airpod";
-import StudioLights from "@/app/components/StudioLights";
+import StudioLights from "./StudioLights";
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
+import {Suspense} from "react";
+import Loading from "@/app/loading";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -18,9 +20,11 @@ const Scene = () => {
         <section>
             <div className={"w-screen h-screen absolute z-10"}>
                 <Canvas dpr={[1, 1.5]} gl={{antialias: false, powerPreference: 'high-performance'}}>
-                    <Case/>
-                    <LeftAirpod />
-                    <RightAirpod />
+                    <Suspense fallback={<Loading />}>
+                        <Case/>
+                        <LeftAirpod />
+                        <RightAirpod />
+                    </Suspense>
 
             <StudioLights />
         </Canvas>

@@ -1,14 +1,16 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, {useRef, useState} from 'react'
 import { Canvas } from "@react-three/fiber"
-import StudioLights from "@/app/components/StudioLights"
+import StudioLights from "./StudioLights"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
-import RotatingPod from "@/app/components/RotatePod";
+import RotatingPod from "./RotatePod";
 import { features } from "@/app/constants";
 import {useMediaQuery} from "react-responsive";
+import {Suspense} from "react";
+import Loading from "@/app/loading";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -18,10 +20,10 @@ const Look = () => {
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const sectionref = useRef(null)
     const [activeIndex, setActiveIndex] = useState(null)
-    const [activeFeature, setActiveFeature] = useState(null)
-    const [targetFeature, setTargetFeature] = useState(null)
+    const [activeFeature, setActiveFeature] = useState(null) // Consider defining a proper type for 'feature'
+    const [targetFeature, setTargetFeature] = useState(null) // Consider defining a proper type for 'feature'
 
-    const handleClick = (feature, index) => {
+    const handleClick = (feature, index) => { // Consider defining a proper type for 'feature'
         if (activeIndex === index) {
             setActiveIndex(null)
             setActiveFeature(null)
@@ -34,6 +36,8 @@ const Look = () => {
     }
 
     useGSAP(() => {
+        if (!sectionref.current) return;
+
         gsap.timeline({
             scrollTrigger: {
                 trigger: sectionref.current,
@@ -63,7 +67,9 @@ const Look = () => {
                             <div className={`w-[60%] max-md:w-full flex items-center transition-all duration-300 h-full gap-2 p-1 pl-1 rounded-full`}>
                                 {isMobile ? null : activeIndex === i ? <img className={"plus"} src="/circle-minus.svg" alt="minus"/> : <img className={"plus"} src="/circle-plus.svg" alt="plus"/>}
 
-                                <span className={"relative small-medium max-md:text-md"}>
+                                <span className={`relative transition-all duration-200 small-medium max-md:text-md hover:scale-95
+                                ${activeIndex === i && "scale-105"}
+                                `}>
                                      {f.label}
                                     </span>
 
@@ -91,7 +97,9 @@ const Look = () => {
 
                 <div className={"w-full h-full"}>
                     <Canvas dpr={[1, 1.5]} gl={{ antialias: false, powerPreference: 'high-performance' }}>
+                        <Suspense fallback={<Loading />}>
                         <RotatingPod targetFeature={targetFeature} />
+                        </Suspense>
                         <StudioLights />
                     </Canvas>
                 </div>

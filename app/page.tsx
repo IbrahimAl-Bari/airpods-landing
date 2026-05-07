@@ -1,20 +1,18 @@
-import NavBar from './components/NavBar'
-import Scene from "@/app/components/Scene";
-import Hero from "@/app/components/Hero";
+import Scene from "./components/Scene";
+import Hero from "./components/Hero";
 import {Suspense} from "react";
 import Loading from "@/app/loading";
-import Showcase from "@/app/components/Showcase";
-import Look from "@/app/components/Look";
-import MaskVid from "@/app/components/MaskVid";
+import Showcase from "./components/Showcase";
+import Look from "./components/Look";
+import MaskVid from "./components/MaskVid";
 
 const Page = () => {
     return (
         <Suspense fallback={<Loading />}>
         <main>
-            <NavBar />
-            {/*<Scene />*/}
+            <Scene />
             <Hero  />
-            {/*<Showcase />*/}
+            <Showcase />
             <Look />
             <MaskVid />
         </main>

@@ -1,16 +1,18 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, {Suspense, useRef } from 'react'
 import Image from 'next/image'
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
 import {Canvas, useFrame} from "@react-three/fiber";
-import {LeftAirpod} from "@/app/components/Left-airpod";
-import {RightAirpod} from "@/app/components/Right-airpod";
-import StudioLights from "@/app/components/StudioLights";
+import {LeftAirpod} from "./Left-airpod";
+import {RightAirpod} from "./Right-airpod";
+import StudioLights from "./StudioLights";
 import {scrollStore} from "@/app/lib/scrollStore";
 import { useMediaQuery } from 'react-responsive';
+import Loading from "@/app/loading";
+import Suspence from "react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -82,7 +84,9 @@ const Showcase = () => {
 
                 <div ref={airpodsref} className={"w-screen h-screen absolute z-10"}>
                     <Canvas camera={{ position: [0, 1, 3.5], fov: 75 }} dpr={[1, 1.5]} gl={{ antialias: false, powerPreference: 'high-performance' }}>
-                       <RotatingPods />
+                       <Suspense fallback={<Loading />}>
+                           <RotatingPods />
+                       </Suspense>
                         <StudioLights />
                     </Canvas>
                 </div>
