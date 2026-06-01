@@ -9,9 +9,9 @@ import { useGLTF } from '@react-three/drei'
 import gsap from "gsap";
 import {useMediaQuery} from "react-responsive";
 
-export function Case(props: any) {
+export function Case() {
   const { nodes, materials } = useGLTF('/models/case.glb')
-  const ref = useRef<any>(null)
+  const ref = useRef(null)
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
