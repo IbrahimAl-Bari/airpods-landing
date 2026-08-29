@@ -97,7 +97,7 @@ const Look = () => {
 
                 <div className={"w-full h-full"}>
                     <Canvas dpr={[1, 1.5]} gl={{ antialias: false, powerPreference: 'high-performance' }}>
-                        <Suspense fallback={<Loading />}>
+                        <Suspense fallback={null}>
                         <RotatingPod targetFeature={targetFeature} />
                         </Suspense>
                         <StudioLights />
