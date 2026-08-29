@@ -11,8 +11,6 @@ import {RightAirpod} from "./Right-airpod";
 import StudioLights from "./StudioLights";
 import {scrollStore} from "@/app/lib/scrollStore";
 import { useMediaQuery } from 'react-responsive';
-import Loading from "@/app/loading";
-import Suspence from "react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
@@ -84,7 +82,7 @@ const Showcase = () => {
 
                 <div ref={airpodsref} className={"w-screen h-screen absolute z-10"}>
                     <Canvas camera={{ position: [0, 1, 3.5], fov: 75 }} dpr={[1, 1.5]} gl={{ antialias: false, powerPreference: 'high-performance' }}>
-                       <Suspense fallback={<Loading />}>
+                       <Suspense fallback={null}>
                            <RotatingPods />
                        </Suspense>
                         <StudioLights />

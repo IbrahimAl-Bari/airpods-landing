@@ -20,7 +20,7 @@ const Scene = () => {
         <section>
             <div className={"w-screen h-screen absolute z-10"}>
                 <Canvas dpr={[1, 1.5]} gl={{antialias: false, powerPreference: 'high-performance'}}>
-                    <Suspense fallback={<Loading />}>
+                    <Suspense fallback={null}>
                         <Case/>
                         <LeftAirpod />
                         <RightAirpod />
